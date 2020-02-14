@@ -1,0 +1,35 @@
+.form-bold {
+    border: aqua;
+}
+
+#app {
+    padding: 3px;
+    align-items: center;
+
+}
+
+.title{
+    font-size: 40px;
+    text-decoration: underline;
+    text-align: center;
+}
+
+.label-text {
+    font-size: 20px;
+}
+
+.input-box {
+    width: 15%;
+    padding: 12px 4px;
+    margin: 12px;
+    border: 2px solid black
+}
+.input-box::placeholder{
+    font-size: 14px;
+    font-style: italic;
+}
+
+.table {
+    padding-right: 4px;
+    padding-left: 4px;
+}

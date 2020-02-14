@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Advisor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id='app'>
+        <h1 class='title'>Investment Advisor</h1>
+        <div class="table">
+        <form class="form-bold">
+            <label class='label-text' for="#initial">Initial Cost</label>
+            <input  class='input-box' type="Number" id='initial' placeholder="Initial Cost" v-model='initialCost'> <br>
+            <label class='label-text' for="#ancillary">Ancillary Cost</label>
+            <input  class='input-box' type="Number" id='ancillary' placeholder="Ancillary Cost" v-model='ancillaryCost'><br>
+            <label class='label-text' for="#recurring">Recurring Cost</label>
+            <input  class='input-box' type="Number" id='recurring' placeholder="Recurring Cost" v-model='recurringCost'><br>
+            <label class='label-text' for="#yearly">Yearly Returns</label>
+            <input  class='input-box' type="Number" id='yearly' placeholder="Yearly Returns" v-model='yearlyReturns'><br>
+        </form>
+        </div>
+        <h4>The result in percentage: {{ result }}</h4>
+
+        <p v-if='judgement'>Note: The system thinks this is a {{ judgement }} investment!</p>
+    </div>
+</body>
+<!-- To be removed! --><script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            initialCost: null,
+            ancillaryCost: null,
+            recurringCost: null,
+            yearlyReturns: null,
+        },
+        computed: {
+            result() {
+                // The provided formula for judging a good investment.
+                all_cost = Number(this.initialCost) + Number(this.ancillaryCost) + Number(this.recurringCost)
+                returns = this.yearlyReturns / all_cost
+                returns_in_percentage = returns * 100
+                returns_in_percentage = returns_in_percentage.toFixed(2)
+                return returns_in_percentage
+            },
+            judgement() {
+                if (this.result) {
+                    if (this.result > 50){
+                        return 'good'
+                    } else if (this.result < 50){
+                        return 'bad'
+                    }   
+                }
+            }
+        }
+    })
+</script>
+</html>
